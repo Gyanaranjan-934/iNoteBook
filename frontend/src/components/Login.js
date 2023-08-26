@@ -10,7 +10,7 @@ const Login = (props) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRkYTIwOTU2NjgzZDk3Mzc4M2YzYTA1In0sImlhdCI6MTY5MjAyMDQ0NH0.H7bGGehWCFR2Uh6S7aMaKP27TDtdeeMo1iQ5HS0qiA0"
+                "auth-token": localStorage.getItem("token")
             },
             body: JSON.stringify({email:credentials.email,password:credentials.password}),
         });
@@ -19,8 +19,8 @@ const Login = (props) => {
         if(json.success){
             // redirect
             localStorage.setItem('token',json.authToken)
-            navigate("/")
             props.showAlert("Logged in Succesfully","success")
+            navigate("/")
         }
         else{
             props.showAlert(json.error,"danger")

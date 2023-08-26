@@ -1,13 +1,18 @@
 import React, { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = (props) => {
+    let navigate = useNavigate();
     const location = useLocation();
     useEffect(() => {
         // Google Analytics
-        console.log(location);
+        // console.log(location);
     }, [location]);
-
+    const handleLogout = () =>{
+        localStorage.removeItem("token")
+        navigate("/login")
+        props.showAlert("Logged out Succesfully!","success")
+    }
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -42,14 +47,21 @@ const Navbar = () => {
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle" to="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</Link>
-                                <ul className="dropdown-menu dropdown-menu-end"> {/* Apply the Bootstrap class for right-aligned dropdown */}
+                                {!localStorage.getItem('token') ? <ul className="dropdown-menu dropdown-menu-end"> {/* Apply the Bootstrap class for right-aligned dropdown */}
                                     <li>
                                         <Link className="dropdown-item" to="/login">Login</Link>
                                     </li>
                                     <li>
                                         <Link className="dropdown-item" to="/signup">Sign Up</Link>
                                     </li>
-                                </ul>
+                                </ul> :
+                                    <ul className="dropdown-menu dropdown-menu-end"> {/* Apply the Bootstrap class for right-aligned dropdown */}
+                                        <li>
+                                            <button onClick={handleLogout} className="dropdown-item" >Logout</button>
+                                        </li>
+                                    </ul>
+
+                                }
                             </li>
                         </ul>
                     </div>

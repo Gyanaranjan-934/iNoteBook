@@ -8,7 +8,7 @@ import Navbar from './components/Navbar'
 import Home from './components/Home';
 import About from './components/About';
 import NoteState from "./context/notes/NoteState";
-import css from "./App.css"
+// import css from "./App.css"
 import Alert from "./components/Alert";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
@@ -28,7 +28,7 @@ const App = () => {
     <>
       <NoteState>
         <Router>
-          <Navbar />
+          <Navbar showAlert={showAlert} />
           <Alert alert={alert} />
           <div className="container">
             <Routes>
