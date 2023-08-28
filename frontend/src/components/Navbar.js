@@ -8,10 +8,10 @@ const Navbar = (props) => {
         // Google Analytics
         // console.log(location);
     }, [location]);
-    const handleLogout = () =>{
+    const handleLogout = () => {
         localStorage.removeItem("token")
         navigate("/login")
-        props.showAlert("Logged out Succesfully!","success")
+        props.showAlert("Logged out Succesfully!", "success")
     }
     return (
         <>
@@ -58,6 +58,9 @@ const Navbar = (props) => {
                                     <ul className="dropdown-menu dropdown-menu-end"> {/* Apply the Bootstrap class for right-aligned dropdown */}
                                         <li>
                                             <button onClick={handleLogout} className="dropdown-item" >Logout</button>
+                                        </li>
+                                        <li>
+                                            <Link className="dropdown-item" to="/edit-profile">Edit Profile</Link>
                                         </li>
                                     </ul>
 

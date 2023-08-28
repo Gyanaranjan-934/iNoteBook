@@ -11,7 +11,6 @@ const SignUp = (props) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRkYTIwOTU2NjgzZDk3Mzc4M2YzYTA1In0sImlhdCI6MTY5MjAyMDQ0NH0.H7bGGehWCFR2Uh6S7aMaKP27TDtdeeMo1iQ5HS0qiA0"
             },
             body: JSON.stringify({name,email,password}),
         });
@@ -24,7 +23,7 @@ const SignUp = (props) => {
             props.showAlert("Account Created Succesfully","success")
         }
         else{
-          props.showAlert(json.error,"danger")
+            props.showAlert(json.error,"danger")
         }
     }   
   const onChange = (e)=>{
